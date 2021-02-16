@@ -9,4 +9,5 @@ print(array[2:])
 print(array[1:3])
 print(array[0:-3])
 print(array[:5])
+print(array[0:-2])
 

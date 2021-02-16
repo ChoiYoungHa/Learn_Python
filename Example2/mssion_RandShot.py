@@ -1,18 +1,44 @@
-from random import *
+# 번호 뽑기
+from random import Random, randint
 
-#
-# 컴퓨터는 0과 9 사이의 서로 다른 세 숫자를 임의의 순서로 뽑습니다. 사용자는 컴퓨터가 뽑은 숫자의 값과 위치를 맞추려고 합니다.
-#
-# 컴퓨터는 사용자가 입력한 세 숫자에 대해서, 아래의 규칙대로 스트라이크(S)와 볼(B)의 개수를 알려줍니다.
-#
-# 숫자의 값과 위치가 모두 일치하면 S입니다.
-# 숫자의 값은 일치하지만 위치가 틀렸으면 B입니다.
-# 예를 들어 컴퓨터가 1, 2, 3을 생성하였는데, 사용자가 1, 3, 5를 입력하면, 1S(1의 값과 위치가 일치) 1B(3의 값만 일치)입니다.
-# 기회는 무제한입니다. 하지만 몇번의 시도 끝에 맞췄는지 기록됩니다.
-#
-# 3S(세 숫자의 값과 위치를 모두 맞춘 경우)일 때 게임이 끝납니다.
-i = range(1, 10)
-i = list(i)
-print(i)
+
+def generate_numbers():
+    numbers = []
+    while len(numbers) < 3:
+        num = randint(0, 9)
+        if num not in numbers:
+            numbers.append(num)
+    return numbers
+
+
+answer = generate_numbers()
+tried_count = 0
+strike_count = 0
+ball_count = 0
+
+while strike_count < 3:
+    init = []
+    while len(init) < 3:
+        temp = int(input(f"{len(init) + 1}번째 수를 입력하세요 : "))
+        if temp in init:
+            print("중복된 숫자입니다. 다른 숫자를 입력하세요.")
+        elif temp < 0 or temp > 9:
+            print("0 ~ 9 의 숫자만 입력하세요.")
+        else:
+            init.append(temp)
+    i = 0
+    strike_count = 0
+    ball_count = 0
+    while i < 3:
+        if init[i] == answer[i]:
+            strike_count = strike_count + 1
+        elif init[i] in answer:
+            ball_count = ball_count + 1
+        i = i + 1
+    print(f"s:{strike_count} b:{ball_count}")
+    tried_count = tried_count + 1
+
+print(f"축하합니다 {tried_count}번의 시도끝에 정답을 맞추셨습니다!")
+
 
 
