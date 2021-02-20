@@ -6,7 +6,6 @@ def mask_security_number(security_number):
 
     for i in range(last_index, last_index - 4, -1):
         temp[i] = "*"
-
     string = ''.join(temp)
     return string
 
